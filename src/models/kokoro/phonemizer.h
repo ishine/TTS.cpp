@@ -16,6 +16,8 @@
 #include <algorithm>
 #include <mutex>
 
+// TODO per ODR, these should not be in an .h
+
 static const std::string ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 static const std::string ACCENTED_A = "àãâäáåÀÃÂÄÁÅ";
 static const std::string ACCENTED_C = "çÇ";
@@ -128,7 +130,7 @@ static const std::map<const char, std::string> LETTER_PHONEMES = {
 	{'d', "dˈiː"},
 	{'e', "ˈiː"},
 	{'f', "ˈɛf"},
-	{'j', "dʒˈeɪ"},
+	{'j', "dʒˈiː"},
 	{'h', "ˈeɪtʃ"},
 	{'i', "ˈaɪ"},
 	{'j', "dʒˈeɪ"},
@@ -136,10 +138,10 @@ static const std::map<const char, std::string> LETTER_PHONEMES = {
 	{'l', "ˈɛl"},
 	{'m', "ˈɛm"},
 	{'n', "ˈɛn"},
-	{'o', "ˈoʊ"},
+	{'o', "ˈəʊ"},
 	{'p', "pˈiː"},
 	{'q', "kjˈuː"},
-	{'r', "ˈɑːɹ"},
+	{'r', "ˈɑː"},
 	{'s', "ˈɛs"},
 	{'t', "tˈiː"},
 	{'u', "jˈuː"},
@@ -147,7 +149,7 @@ static const std::map<const char, std::string> LETTER_PHONEMES = {
 	{'w', "dˈʌbəljˌuː"},
 	{'x', "ˈɛks"},
 	{'y', "wˈaɪ"},
-	{'z', "zˈiː"}
+	{'z', "zˈɛd"}
 };
 
 static const std::string SPACE_CHARACTERS = " \t\f\n";
