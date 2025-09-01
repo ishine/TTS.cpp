@@ -484,7 +484,7 @@ int main(int argc, const char ** argv) {
     if (std::filesystem::is_directory(model_path)) {
         for (auto const &entry : std::filesystem::directory_iterator(model_path)) {
             if (!entry.is_directory() && entry.path().extension() == ".gguf") {
-                const std::string id = entry.path().stem();
+                const std::string id = entry.path().stem().string();
                 model_map[id] = entry.path().string();
             }
         }
@@ -494,7 +494,7 @@ int main(int argc, const char ** argv) {
         }
     } else {
         const std::filesystem::path path = model_path;
-        model_map[path.stem()] = path;
+        model_map[path.stem().string()] = path.string();
     }
 
     auto model_creation = std::chrono::duration_cast<std::chrono::seconds>(
@@ -503,7 +503,7 @@ int main(int argc, const char ** argv) {
 
     std::string default_model = "";
     if (args.get_string_param("--default-model") != "") {
-        const std::string model = std::filesystem::path { args.get_string_param("--default-model") }.stem();
+        const std::string model = std::filesystem::path { args.get_string_param("--default-model") }.stem().string();
         if (model_map.contains(model)) {
             default_model = model;
         } else {
