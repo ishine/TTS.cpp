@@ -131,7 +131,7 @@ struct ggml_tensor * istft(ggml_context * ctx, struct ggml_tensor * a, struct gg
 
 void hann_window(size_t n_fft, std::vector<float> & tgt) {
     for (int i = 0; i < n_fft; i++) {
-        float v = pow(sin(M_PI * (double)i / (double) n_fft), 2.0);
+        float v = pow(sin(std::numbers::pi * (double)i / (double) n_fft), 2.0);
         tgt.push_back(v);
     }
 }
