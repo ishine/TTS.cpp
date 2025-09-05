@@ -1,5 +1,6 @@
 #include "model.h"
 
+#include <math.h>
 #include <numbers>
 #include <cstring>
 
