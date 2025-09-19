@@ -71,3 +71,9 @@ jobs:
       run: |
         cmake -B build -G Ninja -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl -DCMAKE_BUILD_TYPE=Release
         cmake --build build
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ runner.os }}-msvc-build
+        path: build/
