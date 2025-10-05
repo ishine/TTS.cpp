@@ -82,7 +82,7 @@ class OrpheusEncoder(TTSEncoder):
                     f"Failed with exception, {e}, attempting to obtain tokenizer.json via repository '{self.repo_id}'."
                 )
                 raise e
-            with open(conf_path, "r+") as f:
+            with open(conf_path, "r+", encoding="utf-8") as f:
                 self._tokenizer_json = json.load(f)
         return self._tokenizer_json
 
@@ -143,7 +143,7 @@ class OrpheusEncoder(TTSEncoder):
 
     def prepare_rope_frequencies(self):
         """
-        Because Llama-3 like Rotary Positional Embeddings are not currently supported out-of-the-box in GGML, 
+        Because Llama-3 like Rotary Positional Embeddings are not currently supported out-of-the-box in GGML,
         we need to encode the rope frequency vectors to use directly.
         """
         base = self.model.config.rope_theta

@@ -385,7 +385,7 @@ void kokoro_model::post_load_assign() {
    	sampling_factor_scalar->data = (void *)((uint8_t *) ggml_backend_buffer_get_base(buf) + offset);
     size_t scsize = ggml_nbytes(sampling_factor_scalar);
     // while it might appear that the upsampling_rate could be used here, the interpolation rate (i.e. the upsampling scale) is actually independent in the kokoro model implementation.
-    float sample_scalar = upsample_scale*2.0f*M_PI;
+    float sample_scalar = upsample_scale*2.0f*std::numbers::pi;
 	ggml_backend_tensor_set(sampling_factor_scalar, &sample_scalar, 0, scsize);
 	offset += scsize;
 	post_load_tensor_bytes = 300 + offset - original_offset;

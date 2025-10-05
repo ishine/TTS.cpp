@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-linux:
     strategy:
       matrix:
         c_compiler: [gcc, clang]
@@ -58,3 +58,22 @@ jobs:
       with:
         name: ${{ runner.os }}-${{ matrix.c_compiler }}-build
         path: ${{ steps.strings.outputs.build-output-dir }}
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v5
+      with:
+        submodules: recursive
+    - name: Enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1.13.0
+    - name: build
+      run: |
+        cmake -B build -G Ninja -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl -DCMAKE_BUILD_TYPE=Release
+        cmake --build build
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ runner.os }}-msvc-build
+        path: build/

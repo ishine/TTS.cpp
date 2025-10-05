@@ -1,8 +1,8 @@
 #ifndef util_h
 #define util_h
 
-#define _USE_MATH_DEFINES
-#include <cmath>
+#include <numbers>
+#include <math.h>
 #include <functional>
 #include <random>
 #include <stdio.h>
